@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="110dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal" >
+
+    <FrameLayout
+        android:id="@+id/itemsIconFrame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp" >
+
+        <ImageView
+            android:id="@+id/itemsIcon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:focusable="false"
+            android:scaleType="fitXY" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/itemsTextFrame"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/itemsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="11111"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/gray_black" />
+
+        <TextView
+            android:id="@+id/itemsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="22222"
+            android:layout_marginTop="1px"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/gray_light" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/itemsIdFrame"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_marginRight="20px" >
+
+        <TextView
+            android:id="@+id/itemsId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/gray_black" />
+        <ImageView
+            android:id="@+id/btn_inBzbInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/bzblist_btn"
+            />
+
+    </FrameLayout>
+
+</LinearLayout>

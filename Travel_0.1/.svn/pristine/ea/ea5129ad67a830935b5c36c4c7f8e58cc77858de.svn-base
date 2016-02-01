@@ -1,0 +1,133 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/playView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="3.4"
+        android:orientation="vertical" >
+	        <android.support.v4.view.ViewPager
+	            android:id="@+id/adv_pager"
+	            android:layout_width="fill_parent"
+	            android:layout_height="fill_parent" >
+	            
+	        </android.support.v4.view.ViewPager>
+	        
+	        <LinearLayout
+	            android:id="@+id/viewGroup"
+	            android:layout_below="@id/adv_pager"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginTop="-50dp"
+	            android:layout_marginRight="30dp"
+	            android:gravity="right"
+	            android:orientation="horizontal"
+	            
+	             >
+	        </LinearLayout>
+	        
+    </RelativeLayout>
+    
+    
+    <TabHost 
+        android:layout_height="fill_parent" 
+        android:layout_width="fill_parent"
+        android:layout_weight="3"
+        android:id="@android:id/tabhost"> 
+        <LinearLayout 
+            android:layout_height="fill_parent" 
+            android:layout_width="fill_parent" 
+            android:orientation="vertical"> 
+            <TabWidget 
+                android:layout_height="40dp" 
+                android:layout_width="fill_parent" 
+                android:id="@android:id/tabs" 
+                android:visibility="gone" 
+                android:tabStripEnabled="false"> 
+            </TabWidget> 
+            
+            <LinearLayout 
+                android:layout_height="40dp" 
+                android:layout_width="fill_parent" 
+                android:orientation="horizontal"> 
+                <Button 
+                    android:layout_height="fill_parent" 
+                    android:layout_width="fill_parent" 
+                    android:id="@+id/viewui_btn_view" 
+                    android:layout_weight="1" 
+                    android:background="@drawable/viewui_tab_focus" 
+                    android:gravity="center" 
+                    android:textColor="@color/white" 
+                    android:textSize="16sp" 
+                    android:text="景点" 
+                    android:tabStripEnabled="false"/> 
+                <Button 
+                    android:layout_height="fill_parent" 
+                    android:layout_width="fill_parent" 
+                    android:id="@+id/viewui_btn_shopping" 
+                    android:layout_weight="1" 
+                    android:background="@drawable/viewui_tab" 
+                    android:gravity="center" 
+                    android:textColor="@color/white" 
+                    android:textSize="16sp" 
+                    android:text="购物" 
+                    android:tabStripEnabled="false"/> 
+                <Button 
+                    android:layout_height="fill_parent" 
+                    android:layout_width="fill_parent" 
+                    android:id="@+id/viewui_btn_fallow" 
+                    android:layout_weight="1" 
+                    android:background="@drawable/viewui_tab" 
+                    android:gravity="center" 
+                    android:textColor="@color/white" 
+                    android:textSize="16sp" 
+                    android:text="休闲" 
+                    android:tabStripEnabled="false"/> 
+                <Button 
+                    android:layout_height="fill_parent" 
+                    android:layout_width="fill_parent" 
+                    android:id="@+id/viewui_btn_bar" 
+                    android:layout_weight="1" 
+                    android:background="@drawable/viewui_tab" 
+                    android:gravity="center" 
+                    android:textColor="@color/white" 
+                    android:textSize="16sp" 
+                    android:text="酒吧" 
+                    android:tabStripEnabled="false"/> 
+                <Button 
+                    android:layout_height="fill_parent" 
+                    android:layout_width="fill_parent" 
+                    android:id="@+id/viewui_btn_eat" 
+                    android:layout_weight="1" 
+                    android:background="@drawable/viewui_tab" 
+                    android:gravity="center" 
+                    android:textColor="@color/white" 
+                    android:textSize="16sp" 
+                    android:text="美食" 
+                    android:tabStripEnabled="false"/> 
+                <Button 
+                    android:layout_height="fill_parent" 
+                    android:layout_width="fill_parent" 
+                    android:id="@+id/viewui_btn_happy" 
+                    android:layout_weight="1" 
+                    android:background="@drawable/viewui_tab" 
+                    android:gravity="center" 
+                    android:textColor="@color/white" 
+                    android:textSize="16sp" 
+                    android:text="娱乐" 
+                    android:tabStripEnabled="false"/> 
+          </LinearLayout> 
+          
+          <FrameLayout 
+              android:layout_height="fill_parent" 
+              android:layout_width="fill_parent" 
+              android:id="@android:id/tabcontent"> 
+          </FrameLayout> 
+       </LinearLayout> 
+       
+   </TabHost>
+</LinearLayout>

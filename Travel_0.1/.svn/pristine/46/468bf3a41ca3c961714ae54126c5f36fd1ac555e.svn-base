@@ -1,0 +1,125 @@
+package com.mendong.travel.view;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.GridView;
+import android.widget.SimpleAdapter;
+
+import com.mendong.travel.R;
+import com.mendong.travel.ui.ShopUI;
+import com.mendong.travel.ui.adapter.MySimpleAdapter;
+
+public class TabActivity extends Activity {
+
+	private GridView gridView;
+	private int[]logoId={R.drawable.special_1_1,R.drawable.special_2_1,R.drawable.special_3_1,
+            R.drawable.special_4_1,R.drawable.special_5_1,R.drawable.special_6_1,
+            R.drawable.special_7_1,R.drawable.special_8_1,R.drawable.special_9_1};
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.layout_tab);
+		
+		ArrayList<HashMap<String,Object>> list  = new ArrayList<HashMap<String,Object>>();
+		for (int i = 0; i < logoId.length; i++) 
+		{
+			HashMap<String,Object> hashMap = new HashMap<String, Object>();
+			hashMap.put("item_image", logoId[i]);
+			list.add(hashMap);
+		}
+		SimpleAdapter simpleAdapter = new SimpleAdapter(
+				this, list, R.layout.layout_tab_item, 
+				new String[]{"item_image"}, 
+				new int[]{R.id.item_image});
+		gridView = (GridView) findViewById(R.id.viewui_tab_gridView);
+		gridView.setAdapter(new MySimpleAdapter(this,R.drawable.item_bg_special_1,list));
+		gridView.setSelector(new ColorDrawable(Color.TRANSPARENT));
+		gridView.setOnItemClickListener(new OnItemClickListenerMonitor());
+		
+		
+}
+	
+	
+	/**
+	 * 为GridView增加OnItemClickListener监听
+	 * @author 秦盛伟
+	 *
+	 */
+	private class OnItemClickListenerMonitor implements OnItemClickListener
+	{
+
+		public void onItemClick(AdapterView<?> arg0, View view, int position,long id) 
+		{
+			Intent intent=null;
+			switch(position)
+			{
+			    
+				case 0:
+						intent =new Intent(TabActivity.this,ShopUI.class);
+						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						startActivity(intent);
+						//finish();
+					    break;
+				case 1:
+						intent =new Intent(TabActivity.this,ShopUI.class);
+						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						startActivity(intent);
+					//	finish();
+					    break;
+				case 2:
+						intent =new Intent(TabActivity.this,ShopUI.class);
+						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						startActivity(intent);
+						//finish();
+					    break;
+				case 3:
+					    intent =new Intent(TabActivity.this,ShopUI.class);
+						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						startActivity(intent);
+						//finish();
+					    break;
+				case 4:
+						intent =new Intent(TabActivity.this,ShopUI.class);
+						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						startActivity(intent);
+						//finish();
+					    break;
+				case 5:
+						intent =new Intent(TabActivity.this,ShopUI.class);
+						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						startActivity(intent);
+						//finish();
+					    break;
+				case 6:
+						intent =new Intent(TabActivity.this,ShopUI.class);
+						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						startActivity(intent);
+						//finish();
+					    break;
+				case 7:
+						intent =new Intent(TabActivity.this,ShopUI.class);
+						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						startActivity(intent);
+					//	finish();
+					    break;
+				case 8:
+						intent =new Intent(TabActivity.this,ShopUI.class);
+						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						startActivity(intent);
+						//finish();
+					    break;
+			}
+			
+		}
+		
+	}
+
+}

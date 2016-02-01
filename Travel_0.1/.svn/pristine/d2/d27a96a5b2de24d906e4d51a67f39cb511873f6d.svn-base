@@ -1,0 +1,28 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    
+    android:background="@drawable/bg">
+    
+      
+	    <GridView
+	        android:id="@+id/viewui_tab_gridView" 
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:clipChildren="true"
+	        android:fadingEdge="none"
+	        android:layout_centerHorizontal="true"
+	        android:layout_centerVertical="true"
+	        android:numColumns="3"
+	        android:horizontalSpacing="15dp"
+	        android:verticalSpacing="15dp"
+	        android:paddingLeft="15dp"
+		    android:paddingRight="15dp"
+		    android:paddingTop="15dp"
+		    android:paddingBottom="15dp"
+	        >
+	    </GridView>
+    
+
+</RelativeLayout>

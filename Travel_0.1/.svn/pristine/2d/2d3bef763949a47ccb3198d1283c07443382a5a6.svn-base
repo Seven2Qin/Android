@@ -1,0 +1,335 @@
+package com.mendong.travel.view;
+
+import java.lang.ref.WeakReference;
+
+import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapRegionDecoder;
+import android.graphics.Rect;
+import android.location.Location;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnTouchListener;
+import android.widget.ImageView;
+
+import com.ab.activity.AbActivity;
+import com.ab.net.AbHttpCallback;
+import com.ab.net.AbHttpItem;
+import com.ab.net.AbHttpQueue;
+import com.baidu.mapapi.BMapManager;
+import com.baidu.mapapi.LocationListener;
+import com.baidu.mapapi.MKLocationManager;
+import com.mendong.travel.R;
+import com.mendong.travel.TravelApp;
+import com.mendong.travel.control.checkversion.CheckVersionLogic;
+import com.mendong.travel.ui.MainUI;
+
+public class Main extends AbActivity implements OnTouchListener
+{
+
+    private static final String TAG = "Main";
+
+    private final Rect mRect = new Rect();
+    private BitmapRegionDecoder mDecoder;
+    private ImageView mView;
+
+    private MyHandler m_handler;
+
+    private CheckVersionLogic mLogic;
+    
+    
+    
+
+    private Runnable mCheckVer = new Runnable()
+    {
+        @Override
+        public void run()
+        {
+            m_handler.sendEmptyMessage(MyHandler.EVENT_CHECK_VER);
+        }
+    };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        //        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setAbContentView(R.layout.main);
+        
+        TravelApp.getInstance().addActivity(this);
+        
+        
+        init();
+        
+    }
+
+    /* (non-Javadoc)
+     * (覆盖方法)
+     * 方法名称�? onAttachedToWindow
+     * 作者：         Administrator
+     * 方法描述�? 	
+     * @see android.app.Activity#onAttachedToWindow()
+     */
+    @Override
+    public void onAttachedToWindow()
+    {
+        System.out.println("onAttachedToWindow");
+        request();
+        super.onAttachedToWindow();
+    }
+
+    private void request()
+    {
+//        showDialog(0);
+
+        this.showProgressDialog("请稍候...", false);
+//        UiHelper.showProgressDialog(this, null, "请稍�?, null, null, null, null, false);
+
+        new Thread(mCheckVer).start();
+//        m_handler.postDelayed(mCheckVer, 5000L);
+    }
+
+    private void checkVer()
+    {
+
+        AbHttpQueue mAbHttpQueue = AbHttpQueue.getInstance();
+
+        final AbHttpItem item = new AbHttpItem();
+
+        item.callback = new AbHttpCallback()
+        {
+            boolean error = false;
+
+            @Override
+            public void get()
+            {
+                try
+                {
+                    mLogic.requestData();
+                }
+                catch (Exception e)
+                {
+                    error = true;
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void update()
+            {
+
+                if (error)
+                {
+                    Main.this.dialogOpen("提示", "网络异常",
+                            new DialogInterface.OnClickListener()
+                            {
+
+                                @Override
+                                public void onClick(DialogInterface dialog,
+                                        int which)
+                                {
+
+                                    destory();
+                                }
+                            }, null);
+                    return;
+                }
+                if (mLogic.updateData(true))
+                {
+                    m_handler.sendEmptyMessage(MyHandler.EVENT_GOTO_MENGDONG_MAP);
+                    doGotoMendongMap();
+                }
+//                removeDialog(AbConstant.DIALOGPROGRESS);
+                  removeProgressDialog();
+//                UiHelper.removeProgressDialog();
+            }
+
+        };
+
+        mAbHttpQueue.download(item);
+    }
+
+    private void init()
+    {
+        m_handler = new MyHandler(this);
+        mLogic = CheckVersionLogic.getInstance();
+    }
+
+    /* (non-Javadoc)
+     * (覆盖方法)
+     * 方法名称�? onDestroy
+     * 作者：         Administrator
+     * 方法描述�? 	
+     * @see android.app.Activity#onDestroy()
+     */
+    @Override
+    protected void onDestroy()
+    {
+        Log.i(TAG, "onDestroy");
+        if (null != m_handler)
+        {
+            m_handler.removeAll();
+            m_handler = null;
+        }
+        if (null != mLogic)
+        {
+            mLogic.release();
+            mLogic = null;
+        }
+        
+        super.onDestroy();
+    }
+    
+    public void destory()
+    {
+        if (null != m_handler)
+        {
+            m_handler.removeAll();
+            m_handler = null;
+        }
+        if (null != mLogic)
+        {
+            mLogic.release();
+            mLogic = null;
+        }
+        finish();
+        TravelApp app = (TravelApp) getApplication();
+        app.endApp();
+    }
+
+    /* (non-Javadoc)
+     * (覆盖方法)
+     * 方法名称�? onKeyDown
+     * 作者：         Administrator
+     * 方法描述�? 	
+     * @see android.app.Activity#onKeyDown(int, android.view.KeyEvent)
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if (keyCode == KeyEvent.KEYCODE_BACK)
+        {
+           // destory();
+        	Log.i("sysout","Main");
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    
+    private void doGotoMendongMap()
+    {
+     	Intent intent = new Intent(getApplicationContext(), MainUI.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);        
+    }
+    
+    private static final class MyHandler extends Handler
+    {
+
+        private static final short EVENT_GOTO_MENGDONG_MAP = 1;
+
+        private static final short EVENT_GOTO_BAIDU_MAP = 2;
+
+        private static final short EVENT_CHECK_VER = 3;
+
+        private final WeakReference<Activity> m_activity;
+
+        private MyHandler(Activity activity)
+        {
+            m_activity = new WeakReference<Activity>(activity);
+        }
+
+        public void removeAll()
+        {
+            removeMessages(EVENT_GOTO_MENGDONG_MAP);
+            removeMessages(EVENT_GOTO_BAIDU_MAP);
+            removeMessages(EVENT_CHECK_VER);
+        }
+
+        @Override
+        public void handleMessage(Message msg)
+        {
+            Main main = (Main) m_activity.get();
+            if (null != main)
+            {
+                doHandleMessage(main, msg);
+            }
+        }
+
+        private void doHandleMessage(Main main, Message msg)
+        {
+            if (null == msg)
+            {
+                return;
+            }
+            int eventId = msg.what;
+            switch (eventId)
+            {
+                case EVENT_GOTO_MENGDONG_MAP:
+                {
+                    main.doGotoMendongMap();
+                    break;
+                }
+                case EVENT_CHECK_VER:
+                {
+                    main.checkVer();
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+    }
+
+    @Override
+    public boolean onTouch(View arg0, MotionEvent event)
+    {
+        final int action = event.getAction() & MotionEvent.ACTION_MASK;
+        final int x = (int) event.getX();
+        final int y = (int) event.getY();
+        switch (action)
+        {
+            case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_MOVE:
+                setImageRegion(x, y);
+                break;
+        }
+        return true;
+    }
+
+    private void setImageRegion(int left, int top)
+    {
+        //      BitmapFactory.Options opts = new BitmapFactory.Options();
+        final int width = mView.getWidth();
+        final int height = mView.getHeight();
+
+        final int imgWidth = mDecoder.getWidth();
+        final int imgHeight = mDecoder.getHeight();
+
+        int right = left + width;
+        int bottom = top + height;
+        if (right > imgWidth)
+            right = imgWidth;
+        if (bottom > imgHeight)
+            bottom = imgHeight;
+        if (left < 0)
+            left = 0;
+        if (top < 0)
+            top = 0;
+
+        mRect.set(left, top, right, bottom);
+        Bitmap bm = mDecoder.decodeRegion(mRect, null);
+        mView.setImageBitmap(bm);
+    }
+
+	
+
+}
