@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <drawable name="button_backward_pressed">#40F64C99</drawable>
+    <drawable name="button_backward_normal">#0000</drawable>
+    <drawable name="pressed_bg">#ef509d</drawable>
+    <drawable name="nopressed_bg">#fff</drawable>
+
+</resources>

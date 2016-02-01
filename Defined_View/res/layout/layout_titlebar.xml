@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:background="@drawable/bg_titlebar" >
+
+    <TextView
+        android:id="@+id/text_title"
+        style="@style/Text.Title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center" />
+
+    <Button
+        android:id="@+id/button_backward"
+        style="@style/Text.Title_Button"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/button_backward_selector"
+        android:drawableLeft="@drawable/back_arrow"
+        android:gravity="center"
+        android:onClick="onClick"
+        android:text="返回"
+        android:drawablePadding="6dp"
+        android:paddingLeft="5dp"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/button_forward"
+        style="@style/Text.Title_Button"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:paddingRight="5dp"
+        android:background="@drawable/button_backward_selector"
+        android:onClick="onClick"
+        android:gravity="center"
+        android:text="提交"
+        android:visibility="invisible" />
+
+</RelativeLayout>
