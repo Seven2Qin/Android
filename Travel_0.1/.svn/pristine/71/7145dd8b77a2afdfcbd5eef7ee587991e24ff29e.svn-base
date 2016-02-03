@@ -1,0 +1,315 @@
+package com.mendong.travel.ui;
+
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import android.app.LocalActivityManager;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.view.Gravity;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TabHost;
+import android.widget.TabHost.OnTabChangeListener;
+import android.widget.TabWidget;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.ab.activity.AbActivity;
+import com.mendong.travel.R;
+import com.mendong.travel.TravelApp;
+import com.mendong.travel.ui.adapter.MyPagerAdapter;
+
+public class GoodsUI extends AbActivity{
+
+	private ImageView[] imageViews = null;
+	private ImageView imageView = null;
+	private ViewPager advPager = null;
+	private AtomicInteger what = new AtomicInteger(0);
+	private boolean isContinue = true;
+	
+	private Thread thread;
+	private TabHost tabHost;
+	private TabWidget tabWidget;
+	private int[]orderId={R.drawable.order1_1,R.drawable.order2_1,R.drawable.order3_1,R.drawable.order4_1};
+	private int[]orderId_focus={R.drawable.order1_2,R.drawable.order2_2,R.drawable.order3_2,R.drawable.order4_2};
+	
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setAbContentView(R.layout.layout_goods_ui);
+		setTiTleBar();
+		TravelApp.getInstance().addActivity(this);
+		
+		LocalActivityManager activityManager = new LocalActivityManager(GoodsUI.this, true);
+		 //这句很重要
+		activityManager.dispatchCreate(savedInstanceState);
+		
+		tabHost = (TabHost) findViewById(android.R.id.tabhost);		
+		tabHost.setup(activityManager);
+		tabWidget = tabHost.getTabWidget();
+		
+		tabHost.addTab(tabHost.newTabSpec("详情")  
+
+               .setIndicator("详情")  
+
+               .setContent(new Intent(GoodsUI.this,OneActivity.class)));  
+		
+		tabHost.addTab(tabHost.newTabSpec("评价")  
+				
+				.setIndicator("评价")  
+				
+				.setContent(new Intent(GoodsUI.this,TwoActivity.class)));  
+
+		tabHost.setCurrentTab(0);
+		
+		tabHost.setOnTabChangedListener(new OnTabChangeListener() {
+			
+			@Override
+			public void onTabChanged(String tabId) 
+			{
+				//切换到详情
+				if(tabHost.getCurrentTab()==0)
+				{
+					setCurrentTabWithAnim(0);
+				}
+				//切换到评价
+				else if(tabHost.getCurrentTab()==1)
+				{
+					setCurrentTabWithAnim(1);
+				}
+
+			}
+		});
+		
+		int count = tabWidget.getChildCount();
+		for (int i = 0; i < count; i++) 
+		{ 
+			View view = tabWidget.getChildTabViewAt(i); 
+			final TextView tv = (TextView) view.findViewById(android.R.id.title); 
+			tv.setTextSize(22); 
+			tv.setTextColor(this.getResources().getColorStateList( android.R.color.white));
+			tv.setBackgroundResource(R.drawable.goodsui_tab);
+			tv.setGravity(Gravity.CENTER);
+		}
+		
+		
+		initViewPager();
+	}
+	
+	/**
+	 * 设置TitleBar
+	 */
+	private void setTiTleBar()
+	{
+		
+		this.setLogo(R.drawable.back);
+	    this.setTitleLayoutBackground(R.drawable.bg_titlebar);
+        this.setTitleText("");
+        //设置文本位置
+        this.setTitleTextMargin(0,0,0, 0);
+        //返回按钮键
+        this.setLogoBackOnClickListener(new View.OnClickListener(){
+            public void onClick(View v)
+            {
+                finish();
+            }});
+        //初始化TitleBar右边按钮
+        initTitleRightLayout();
+	}
+	
+	private void initTitleRightLayout()
+    {
+        clearRightView();
+        View rightViewApp = mInflater.inflate(R.layout.app_btn, null);
+        addRightView(rightViewApp);
+        ImageButton appBtn = (ImageButton) rightViewApp.findViewById(R.id.btnback);
+
+    }
+	
+	
+	private void setCurrentTabWithAnim(int id)
+	 {
+	//这个方法是关键，用来判断动画滑动的方向  
+
+		   switch(id)
+		   {
+			   case 0:
+					   tabHost.getCurrentView().startAnimation(AnimationUtils.loadAnimation(this, R.anim.push_left_out));
+					   tabHost.getCurrentView().startAnimation(AnimationUtils.loadAnimation(this, R.anim.push_left_in));
+					   break;
+			   case 1:
+					   tabHost.getCurrentView().startAnimation(AnimationUtils.loadAnimation(this, R.anim.push_right_out));
+					   tabHost.getCurrentView().startAnimation(AnimationUtils.loadAnimation(this, R.anim.push_right_in));
+					   break;
+		   }
+
+	 
+	}
+	
+	/**
+	 * 设置广告栏的图片及切换效果
+	 */
+	private void initViewPager() {
+		advPager = (ViewPager) findViewById(R.id.adv_pager);
+		// 图片列表
+		List<View> advPics = new ArrayList<View>();
+		// 图片1
+		ImageView img1 = new ImageView(this);
+		img1.setBackgroundResource(R.drawable.play1);
+		advPics.add(img1);
+		// 图片2
+		ImageView img2 = new ImageView(this);
+		img2.setBackgroundResource(R.drawable.play2);
+		advPics.add(img2);
+		// 图片3
+		ImageView img3 = new ImageView(this);
+		img3.setBackgroundResource(R.drawable.play3);
+		advPics.add(img3);
+		// 图片4
+		ImageView img4 = new ImageView(this);
+		img4.setBackgroundResource(R.drawable.play4);
+		advPics.add(img4);
+ 
+		// group是R.layou.mainview中的负责包裹小圆点的LinearLayout.
+		ViewGroup group = (ViewGroup) findViewById(R.id.viewGroup);
+		imageViews = new ImageView[advPics.size()];
+
+		for (int i = 0; i < advPics.size(); i++) 
+		{
+			imageView = new ImageView(this);
+			imageView.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) 
+				{
+					Toast.makeText(GoodsUI.this, "q", Toast.LENGTH_SHORT).show();
+				}
+			});
+			imageView.setLayoutParams(new LayoutParams(60, 60));
+			imageView.setPadding(20,0,20,0);
+			imageViews[i] = imageView;
+			if (i == 0) {
+				// 默认选中第一张图片
+				imageViews[i]
+						.setBackgroundResource(orderId_focus[i]);
+			} else {
+				imageViews[i]
+						.setBackgroundResource(orderId[i]);
+			}
+			
+			group.addView(imageViews[i]);
+		}
+
+		advPager.setAdapter(new MyPagerAdapter(advPics));
+		advPager.setOnPageChangeListener(new GuidePageChangeListener());
+		//按下时不继续定时滑动,弹起时继续定时滑动
+		advPager.setOnTouchListener(new View.OnTouchListener() {
+
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				switch (event.getAction()) {
+				case MotionEvent.ACTION_DOWN:
+				case MotionEvent.ACTION_MOVE:
+					isContinue = false;
+					break;
+				case MotionEvent.ACTION_UP:
+					isContinue = true;
+					break;
+				default:
+					isContinue = true;
+					break;
+				}
+				return false;
+			}
+		});
+		// 定时滑动线程
+		thread = new Thread(new Runnable()
+		{
+
+			@Override
+			public void run() {
+				while (true) {
+					if (isContinue) {
+						viewHandler.sendEmptyMessage(what.get());
+						whatOption();
+					}
+				}
+				
+			}
+			
+		});
+		thread.start();
+		
+	}
+
+	/**
+	 * 操作圆点轮换变背景
+	 */
+	private void whatOption() {
+		what.incrementAndGet();
+		if (what.get() > imageViews.length - 1) {
+			what.getAndAdd(-4);
+		}
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			
+		}
+	}
+
+	/**
+	 * 处理定时切换广告栏图片的句柄
+	 */
+	private final Handler viewHandler = new Handler() {
+
+		@Override
+		public void handleMessage(Message msg) {
+			advPager.setCurrentItem(msg.what);
+			super.handleMessage(msg);
+		}
+
+	};
+
+	/** 指引页面改监听器 */
+	private final class GuidePageChangeListener implements OnPageChangeListener {
+
+		@Override
+		public void onPageScrollStateChanged(int arg0) {
+
+		}
+
+		@Override
+		public void onPageScrolled(int arg0, float arg1, int arg2) {
+
+		}
+
+		@Override
+		public void onPageSelected(int arg0) {
+			for (int i = 0; i < imageViews.length; i++) {
+				imageViews[arg0]
+						.setBackgroundResource(orderId_focus[arg0]);
+				if (arg0 != i) {
+					imageViews[i]
+							.setBackgroundResource(orderId[i]);
+				}
+			}
+
+		}
+
+	}
+	
+	
+
+  }

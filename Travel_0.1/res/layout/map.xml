@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <org.osmdroid.views.MapView  
+	       android:id="@+id/myOSMmapview"  
+           android:layout_width="match_parent"  
+           android:layout_height="match_parent"  
+           tilesource="MapquestOSM"  
+           android:clickable="true"  
+           android:enabled="true" >  
+    </org.osmdroid.views.MapView> 
+    
+     <RelativeLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+  <!--   <org.jump.utils.view.ImageControl
+        android:id="@+id/common_imageview_imageControl1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" /> -->
+
+    <ImageButton
+        android:id="@+id/imgleft1"
+        android:layout_width="78dip"
+        android:layout_height="78dip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="40px"
+        android:layout_marginBottom="15px"
+        android:background="@drawable/gl_btn_left_g1" />
+
+    <ImageButton
+        android:id="@+id/imgleft3"
+        android:layout_width="78dip"
+        android:layout_height="78dip"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="40px"
+        android:layout_marginTop="19px"
+        android:layout_weight="1"
+        android:background="@drawable/gl_btn_left_g3" />
+
+    <ImageButton
+        android:id="@+id/imgright1"
+        android:layout_width="78dip"
+        android:layout_height="78dip"
+        android:layout_alignBottom="@+id/imgleft1"
+        android:layout_alignParentTop="false"
+        android:layout_alignRight="@+id/imgright2"
+        android:layout_weight="1"
+        android:background="@drawable/gl_btn_right_g1" />
+
+    <ImageButton
+        android:id="@+id/imgright2"
+        android:layout_width="78dip"
+        android:layout_height="78dip"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="right"
+        android:layout_marginRight="40px"
+        android:layout_marginTop="19px"
+        android:layout_weight="1"
+        android:background="@drawable/gl_btn_right_g2" />
+
+    <ImageButton
+        android:id="@+id/imageEye"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/eye" />
+
+    <ImageButton
+        android:id="@+id/imgButton_switcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imgleft3"
+        android:layout_below="@+id/imgleft3"
+        android:layout_marginTop="31dp"
+        android:background="@drawable/custom_loc" />
+
+    <ImageButton
+        android:id="@+id/clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/imgright2"
+        android:layout_alignTop="@+id/imgButton_switcher"
+        android:src="@drawable/image_error" />
+
+</RelativeLayout>
+
+</FrameLayout>
+
+

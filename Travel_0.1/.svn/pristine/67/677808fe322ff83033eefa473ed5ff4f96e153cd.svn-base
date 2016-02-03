@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="110dp">
+        
+        <ImageView 
+            android:id="@+id/imgView_bzbinfoHead"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bzbinfo_icon"
+            />
+           <LinearLayout 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/imgView_bzbinfoHead"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+               >
+		        <TextView 
+		            android:id="@+id/txtView_bzbName"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="德云社"
+		            android:textSize="26sp"
+		            android:textStyle="bold"/>
+		        <TextView 
+		            android:id="@+id/txtView_recommend"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_marginTop="3dp"
+		            android:text="推荐指数："
+		            android:textSize="16sp"
+		            android:textStyle="normal"
+		            android:textColor="@color/gray_light"/>
+		        <LinearLayout
+		            android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+		            >
+				        <ImageView 
+				            android:id="@+id/imgView_recommendNo1"
+				            android:layout_width="wrap_content"
+				            android:layout_height="wrap_content"
+				            android:background="@drawable/re_no1"/>
+				        <ImageView 
+				            android:id="@+id/imgView_recommendNo2"
+				            android:layout_width="wrap_content"
+				            android:layout_height="wrap_content"
+				            android:layout_marginLeft="2dp"
+				            android:background="@drawable/re_no1"/>
+				        <ImageView 
+				            android:id="@+id/imgView_recommendNo3"
+				            android:layout_width="wrap_content"
+				            android:layout_height="wrap_content"
+				            android:layout_marginLeft="2dp"
+				            android:background="@drawable/re_no1"/>
+				        <ImageView 
+				            android:id="@+id/imgView_recommendNo4"
+				            android:layout_width="wrap_content"
+				            android:layout_height="wrap_content"
+				            android:layout_marginLeft="2dp"
+				            android:background="@drawable/re_no2"/>
+				        <ImageView 
+				            android:id="@+id/imgView_recommendNo5"
+				            android:layout_width="wrap_content"
+				            android:layout_height="wrap_content"
+				            android:layout_marginLeft="2dp"
+				            android:background="@drawable/re_no2"/>
+		        </LinearLayout>
+           </LinearLayout>
+        
+    </RelativeLayout>
+
+    
+    <LinearLayout 
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:orientation="vertical">
+        <View 
+            android:id="@+id/view_line"
+            android:layout_width="fill_parent"
+            android:layout_marginTop="5dp" 
+            android:layout_height="1px" 
+            android:background="@color/gray_light" > 
+        </View>  
+
+	    <ScrollView
+	        android:id="@+id/scrollView_bzbInfo"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	         >
+	        <LinearLayout
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:orientation="vertical" >
+ 
+            <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:gravity="center_vertical|center_horizontal"
+                 android:layout_marginTop="8dp"
+                 android:text="简介:"
+                 android:textSize="24sp"
+                 android:background="@drawable/brief_introduction" />
+ 
+            <TextView
+                 android:id="@+id/txtView_bzbIntroduce"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginRight="20dp"
+                 android:layout_marginTop="8dp"
+                 android:layout_gravity="center_horizontal"
+                 android:textSize="16sp"
+                 android:text="    创建于1995年，以“让相声回归剧场”、做“真正的相声”为旗帜，培养曲艺人才和服务大众为主旨的相声社团，开辟话剧混搭相声的新形式，为观众演绎从清代、民国到新中国成立后各种风格的相声。" />
+            
+            <com.ab.view.AbPlayView
+           		 android:id="@+id/mAbAutoPlayView"
+           		 android:layout_width="wrap_content"
+          		 android:layout_height="232dp"
+          		 android:layout_marginTop="8dp"
+          		 android:layout_marginLeft="20dp"
+                 android:layout_marginRight="20dp">
+            </com.ab.view.AbPlayView>
+ 
+            <Button
+                 android:id="@+id/btn_orderBzb"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginRight="20dp"
+                 android:layout_marginTop="8dp"
+                 android:textSize="26sp"
+                 android:text="预定"
+                 android:layout_gravity="center_vertical|center_horizontal"
+                 android:background="@drawable/gl_btn_info_order"/>
+ 
+            <Button
+                 android:id="@+id/btn_goBzb"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginRight="20dp"
+                 android:layout_marginTop="8dp"
+                 android:layout_marginBottom="8dp"
+                 android:textSize="26sp" 
+                 android:text="前往"
+                 android:layout_gravity="center_vertical|center_horizontal"
+                 android:background="@drawable/gl_btn_info_go"/>
+ 
+         </LinearLayout>
+	        
+	        
+	        
+	    </ScrollView>
+        
+    </LinearLayout>
+    
+    <!--         <com.ab.view.AbPlayView
+            android:id="@+id/mAbAutoPlayView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+        </com.ab.view.AbPlayView> -->
+
+        <!-- <ImageButton
+            android:id="@+id/ibtexpand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|right"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/gl_btn_zan" /> -->
+    
+    <!-- <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.5"
+        android:minHeight="400dp"
+        android:orientation="vertical" >
+
+        <org.jump.utils.view.CollapsibleTextView
+            android:id="@+id/desc_collapse_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+        
+    </FrameLayout> -->
+
+
+
+</LinearLayout>

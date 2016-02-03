@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:id="@+id/bzb_list"
+    android:background="@color/gray_white"
+    >
+    
+     <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <!--  <ImageView
+                android:id="@+id/imgView_bg"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:lines="1"
+                android:textColor="@color/white"
+                android:textSize="20sp" 
+                android:background="@drawable/search_bg"/>
+            <ImageButton
+                android:id="@+id/imgButton_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/btn_search" /> -->
+
+<!--             <EditText 
+                android:id="@+id/imgView_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape"
+                android:layout_gravity="center_horizontal"
+                /> -->
+          <!--   <ImageView 
+                android:id="@+id/imgView_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/search"
+                android:layout_gravity="center_vertical|center_horizontal"
+                /> -->
+            
+        
+    </FrameLayout>
+
+     <com.ab.view.AbPullToRefreshListView
+         android:id="@+id/bzb_list_view"
+         android:layout_width="fill_parent"
+         android:layout_height="fill_parent"
+         android:cacheColorHint="#00000000"
+         android:fadingEdge="none" >
+     </com.ab.view.AbPullToRefreshListView>
+    
+</LinearLayout>

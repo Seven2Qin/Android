@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">圈圈</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="pull_to_refresh_pull_label">下拉列表搜索......</string>
+    <string name="pull_to_refresh_pull_label_footer">上拉列表搜索......</string>
+    <string name="pull_to_refresh_release_label">松开列表搜索......</string>
+    <string name="pull_to_refresh_refreshing_label">正在搜索，请稍候......</string>
+    <string name="desc_shrinkup">收起</string>
+    <string name="desc_spread">显示更多</string>
+    <string name="load_ing">加载中···</string>
+</resources>
