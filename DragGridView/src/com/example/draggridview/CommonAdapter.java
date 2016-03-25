@@ -1,7 +1,6 @@
 package com.example.draggridview;
 
 /**
- * Created by su on 2015/11/12.
  */
 
 

@@ -18,7 +18,6 @@ import android.widget.ImageView;
 
 /**
  * 可拖拽、交换位置的GridView
- * Created by Chen Haitao on 2015/12/11.
  */
 public class DragGridView extends GridView{
 
