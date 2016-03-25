@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DragGridView</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="func_store_mgr">网点管理</string>
+    <string name="func_store_tag">网点标注</string>
+    <string name="func_store_meet">网点拜访</string>
+    <string name="func_call_again">电话回访</string>
+    <string name="func_order_search">订单查询</string>
+    <string name="func_order_booking">代客下单</string>
+    <string name="func_order_booking_hint">帮助客户下单采购</string>
+    <string name="order_validate">无效的订单号</string>
+    <string name="func_store_reg">网点注册</string>
+    <string name="plan_visit_title">计划拜访</string>
+    <string name="short_cut_add_more">更多</string>
+
+</resources>
