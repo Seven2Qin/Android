@@ -1,0 +1,15 @@
+[DEFAULT]
+BASEURL=http://www.bmob.cn/
+[DOC#403]
+BASEURL=http://www.bmob.cn/
+ORIGURL=about:blank
+[DOC#416]
+BASEURL=http://www.bmob.cn/
+ORIGURL=javascript:;
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,2
+[InternetShortcut]
+IDList=
+URL=http://www.bmob.cn/
+IconFile=http://assets.bmob.cn/images/favicon.ico
+IconIndex=1

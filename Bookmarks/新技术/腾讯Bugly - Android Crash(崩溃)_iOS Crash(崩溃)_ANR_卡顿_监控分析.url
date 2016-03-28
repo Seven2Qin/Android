@@ -1,0 +1,9 @@
+[DEFAULT]
+BASEURL=http://bugly.qq.com/
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,2
+[InternetShortcut]
+IDList=
+URL=http://bugly.qq.com/
+IconFile=http://bugly.qq.com/bugly_b.ico?n=1.0
+IconIndex=1

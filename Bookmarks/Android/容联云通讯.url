@@ -1,0 +1,15 @@
+[DEFAULT]
+BASEURL=http://www.yuntongxun.com/
+[DOC#42]
+BASEURL=http://www.yuntongxun.com/
+ORIGURL=javascript:false;
+[DOC#602]
+BASEURL=http://www.yuntongxun.com/
+ORIGURL=about:blank
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,2
+[InternetShortcut]
+IDList=
+URL=http://www.yuntongxun.com/
+IconFile=http://www.yuntongxun.com/favicon.ico
+IconIndex=1

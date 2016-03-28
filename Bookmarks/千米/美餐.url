@@ -1,0 +1,9 @@
+[DEFAULT]
+BASEURL=https://meican.com/
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,11
+[InternetShortcut]
+IDList=
+URL=https://meican.com/#/rest/b780854a-918a-423c-bb4d-1eddf56c1383/2016-03-27%2016:30
+IconFile=https://meican.com/favicon.ico
+IconIndex=1

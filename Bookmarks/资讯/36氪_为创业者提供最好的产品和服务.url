@@ -1,0 +1,9 @@
+[DEFAULT]
+BASEURL=http://36kr.com/
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,2
+[InternetShortcut]
+IDList=
+URL=http://36kr.com/
+IconFile=https://kryptoners.b0.upaiyun.com/assets/favicon-6523a7e532a9862be505b7657fd7ddb7.ico
+IconIndex=1
