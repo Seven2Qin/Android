@@ -33,10 +33,13 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button:
-                glideRequest.load("https://www.baidu.com/img/bdlogo.png").into(imageView);
+                //加载gif动态图片 crossFade:渐变效果
+                glideRequest.load("http://ww1.sinaimg.cn/large/85cccab3gw1etdi67ue4eg208q064n50.jpg")
+                        .crossFade().into(imageView);
                 break;
             case R.id.button2:
-                glideRequest.load("https://www.baidu.com/img/bdlogo.png").transform(new GlideRoundTransform(context)).into(imageView);
+                glideRequest.load("https://www.baidu.com/img/bdlogo.png")
+                        .crossFade().transform(new GlideRoundTransform(context)).into(imageView);
                 break;
             case R.id.button3:
                 glideRequest.load("https://www.baidu.com/img/bdlogo.png").transform(new GlideRoundTransform(context, 10)).into(imageView);
